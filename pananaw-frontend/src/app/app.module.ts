@@ -36,6 +36,10 @@ import { ActionModalComponent } from './content/actions/action-modal/action-moda
 import { HammertimeDirective } from './hammertime.directive';
 import { UserComponent } from './content/user/user.component';
 import { ActionEmailModalComponent } from './content/actions/action-email-modal/action-email-modal.component';
+import { StatisticsComponent } from './content/statistics/statistics.component';
+import { RankingComponent } from './content/ranking/ranking.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +54,9 @@ import { ActionEmailModalComponent } from './content/actions/action-email-modal/
     TruncatePipe,
     ActionModalComponent,
     HammertimeDirective,
-    ActionEmailModalComponent
+    ActionEmailModalComponent,
+    StatisticsComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,9 @@ import { ActionEmailModalComponent } from './content/actions/action-email-modal/
     MatCheckboxModule,
     MatDialogModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ChartsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
