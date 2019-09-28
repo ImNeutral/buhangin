@@ -24,10 +24,10 @@ def __create_message(sender, to, subject, message_text):
 
 def send_email(sender, receiver, title, content):
     global scopes
+    global credentials_file
 
     creds = None
-    
-    pickle_filename = "{}.pickle".format(sender)
+    pickle_filename = "lib/{}.pickle".format(sender)
     if os.path.exists(pickle_filename):
         with open(pickle_filename, 'rb') as token:
             creds = pickle.load(token)

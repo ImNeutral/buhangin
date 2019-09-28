@@ -5,4 +5,4 @@
 */__pycache__
 
 # Gmail stuff
-token.pickle
+*/*.pickle
