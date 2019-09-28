@@ -2,12 +2,14 @@ from keras.models import load_model
 from keras.preprocessing import sequence
 from keras.preprocessing.text import Tokenizer
 from modules.classes import Sentiment 
+import tensorflow
 
 import sys
 
 # Files
 vocabulary_file = "lib/vocab.txt"
 model_file = "lib/trained.model"
+graph = tensorflow.get_default_graph()
 
 # Constants
 max_len = 50
@@ -17,7 +19,6 @@ model = None
 tokenizer = None
 
 def __init_tokenizer():
-    global tokenizer
     global vocabulary_file
 
     tokenizer = Tokenizer()
@@ -29,16 +30,20 @@ def __init_tokenizer():
 
     # Assign integer ids for each word.
     tokenizer.fit_on_texts(vocabulary)
+    return tokenizer
 
 def __init_model():
-    global model
+    global model_file
     model = load_model(model_file)
+    model._make_predict_function()
+    return model
 
 def predict(text):
     global model
-    global vocabulary
-    global tokenizer
     global max_len
+
+    tokenizer = __init_tokenizer()
+    model = __init_model()
 
     text = text.lower()
     text_ids = tokenizer.texts_to_sequences([text])
@@ -51,6 +56,3 @@ def predict(text):
         return Sentiment.NORMAL
     else:
         return Sentiment.BAD
-
-__init_model()
-__init_tokenizer()
