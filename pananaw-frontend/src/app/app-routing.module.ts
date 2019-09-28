@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FeedComponent } from './content/feed/feed.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { ActionsComponent } from './content/actions/actions.component';
 import { UserComponent } from './content/user/user.component';
 import { StatisticsComponent } from './content/statistics/statistics.component';
 import { RankingComponent } from './content/ranking/ranking.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
       children: [
         { path: 'feed', component: FeedComponent },
         { path: 'user', component: UserComponent },
+        { path: 'actions', component: ActionsComponent},
         { path: 'statistics', component: StatisticsComponent },
         { path: 'ranking', component: RankingComponent }
       ]},

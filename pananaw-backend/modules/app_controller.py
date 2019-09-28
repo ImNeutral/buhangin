@@ -5,8 +5,11 @@ from modules import data_fetcher
 from modules import predictor
 from modules.classes import Metric
 from modules.classes import Rank
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+
 
 ## PREDICTOR ##
 
@@ -31,21 +34,23 @@ def findSentimentsByUserId(userId):
         for card in cards:
             card.sentiment = predictor.predict(card.content)
             metric.incrementStatusCount(card.sentiment)
-            firebase_service.createEntity(card.to_dict() , "cards")
+            
+            if card.sentiment != "normal":
+                firebase_service.createEntity(card.to_dict() , "cards")
+            print(f"CONTENT : {card.content}")
+            print(f"SENTIMENT : {card.sentiment}")
+            
+            rank_id = f"{firebase_service.__generateId()}-{__cleanRemoveSpaces(card.location)}" 
+            rank_dict = firebase_service.findEntity(rank_id, "ranks")
+            rank = Rank(card.location)
 
-            rank_id = firebase_service.__generateId()
-            # rank_dict = firebase_service.findEntity(rank_id, "ranks")
-            # rank = Rank(card.location)
-
-            # if rank_dict is None:
-            #     firebase_service.createEntity(metric.to_dict(), "ranks")
-            # else:
-            #     rank.to_obj(rank_dict)
-            #     rank.incrementGoodCount(card.location)
-            #     firebase_service.updateEntity(rank.to_dict(), rank.id, "ranks")
-    else:
-        metric.to_obj(metric_dict)
-        
+            if rank_dict is None:
+                firebase_service.createEntity(rank.to_dict(), "ranks")
+            else:
+                rank.to_obj(rank_dict)
+                rank.incrementGoodCount(card.location)
+                firebase_service.updateEntity(rank.to_dict(), rank.id, "ranks")
+    
         firebase_service.updateEntity(metric.to_dict(), metric.id, "metrics")
 
     return jsonify({"success" : True}), 200
@@ -126,3 +131,9 @@ def __getLatestPostId():
     content = f.read()
     f.close()
     return content
+
+def __cleanRemoveSpaces(word):
+    if word is None:
+        return "Others"
+    else:
+        return word.replace(" ", "-")

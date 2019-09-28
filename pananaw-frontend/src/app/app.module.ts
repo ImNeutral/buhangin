@@ -11,9 +11,13 @@ import {
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
+  MatListModule,
+  MatExpansionModule,
+  MatCheckboxModule,
+  MatDialogModule,
   MatSidenavModule,
-  MatSnackBarModule,
-  MatListModule} from '@angular/material';
+  MatSnackBarModule
+} from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,12 +30,15 @@ import { FeedComponent } from './content/feed/feed.component';
 import { ContentComponent } from './content/content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { UserComponent } from './content/user/user.component';
+import { ActionsComponent } from './content/actions/actions.component';
+import { TruncatePipe } from 'src/@shared/pipe/truncate.pipe';
+import { ActionModalComponent } from './content/actions/action-modal/action-modal.component';
 import { HammertimeDirective } from './hammertime.directive';
+import { UserComponent } from './content/user/user.component';
 import { StatisticsComponent } from './content/statistics/statistics.component';
-import { ChartsModule } from 'ng2-charts';
 import { RankingComponent } from './content/ranking/ranking.component';
-
+import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,6 +49,9 @@ import { RankingComponent } from './content/ranking/ranking.component';
     ContentComponent,
     WelcomeComponent,
     UserComponent,
+    ActionsComponent,
+    TruncatePipe,
+    ActionModalComponent,
     HammertimeDirective,
     StatisticsComponent,
     RankingComponent
@@ -61,12 +71,20 @@ import { RankingComponent } from './content/ranking/ranking.component';
     MatCardModule,
     MatButtonModule,
     FlexLayoutModule,
+    MatListModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatDialogModule,
     MatSidenavModule,
     MatSnackBarModule,
     ChartsModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ActionModalComponent
+  ]
 })
 export class AppModule { }

@@ -90,22 +90,35 @@ class Metric:
 
 class Rank:
     def __init__(self, location):
-        self.id = f"{datetime.now().month}-{datetime.now().year}"
+        self.id = self.__generateId(location)
         self.good = 0
         self.location = location
+        self.month = datetime.now().month
+        self.year = datetime.now().year
 
     def to_dict(self):
         return {
             "id" : self.id,
             "location" : self.location,
             "good" : self.good,
+            "month" : self.month,
+            "year" : self.year
         }
 
     def to_obj(self, rank_dict):
         self.id = rank_dict["id"]
         self.location = rank_dict["location"]
         self.good = rank_dict["good"]
+        self.month = rank_dict["month"]
+        self.year = rank_dict["year"]
 
     def incrementGoodCount(self, location):
-        if (location == self.location and f"{datetime.now().month}-{datetime.now().year}" == self.id):
-            self.good += 0
+        if (location == self.location and self.__generateId(location) == self.id):
+            self.good += 1
+
+    def __generateId(self, location):
+        monthYear = f"{datetime.now().month}-{datetime.now().year}"
+        if location is None:
+            return f"{monthYear}-Others"
+        else:
+            return f"{monthYear}-{location.replace(' ', '-')}"

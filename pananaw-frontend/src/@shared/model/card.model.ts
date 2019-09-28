@@ -1,18 +1,18 @@
 export interface CardModel {
-    uid: string;
+    id: string;
     content: string;
     sentiment: Sentiment;
     source: string;
     link: string;
-    numShares ?: number;
-    numReacts ?: number;
+    numMentions ?: number;
     status: Status;
-    yearPosted: string;
-    monthPosted: string;	
-    dayPosted: string;	
-    hourPosted: string;	
-    minutesPosted: string;	
+    checked ?: boolean;
+    yearPosted: number;
+    monthPosted: number;	
+    dayPosted: number;	
+    hourPosted: number;	
+    minutesPosted: number;	
 }
 
-export enum Sentiment {GOOD = 'Good', BAD = 'Bad', NORMAL = 'Normal'}
-export enum Status {NEW = 'New', ARCHIVED = 'Archived', PENDING = 'Pending', DONE = 'Done'}
+export enum Sentiment {GOOD = 'good', BAD = 'bad', NORMAL = 'normal'}
+export enum Status {NEW = 'new', ARCHIVED = 'archived', PENDING = 'pending', DONE = 'done'}
