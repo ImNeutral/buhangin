@@ -11,7 +11,9 @@ import {
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatSidenavModule} from '@angular/material';
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatSnackBar} from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +26,8 @@ import { FeedComponent } from './content/feed/feed.component';
 import { ContentComponent } from './content/content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { UserComponent } from './user/user.component';
+import { UserComponent } from './content/user/user.component';
+import { HammertimeDirective } from './hammertime.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { UserComponent } from './user/user.component';
     FeedComponent,
     ContentComponent,
     WelcomeComponent,
-    UserComponent
+    UserComponent,
+    HammertimeDirective
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { UserComponent } from './user/user.component';
     MatCardModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

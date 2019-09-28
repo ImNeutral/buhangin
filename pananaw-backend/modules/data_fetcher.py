@@ -10,7 +10,7 @@ access_token_key = "1077197211497185281-KlMzZwwJihO7q4snVABjC6FfqKl4BD"
 access_token_secret = "zfu8cJ5JLtjtkAemhCG5YLmOVOi2fR8CaHGjuJ8W28j4K"
 base_twitter_link = "https://www.twitter.com"
 tweet_date_format = "%a %b %d %H:%M:%S %z %Y"
-tweets_per_query = 100
+tweets_per_query = 50
 
 # Global variables
 twitter_api = None
@@ -69,14 +69,15 @@ def __is_new_account(tweet):
     threshold_date = datetime.now(create_date.tzinfo) - timedelta(days=30)
     return create_date <= threshold_date
 
-def fetch(query):
+def fetch(query, since_id=None):
     global tweets_per_query
 
     raw_query = urllib.parse.urlencode({
         "q": query,
         "f": "live",
         "tweet_mode": "extended",
-        "count": tweets_per_query 
+        "count": tweets_per_query,
+        "since_id": since_id 
     })
 
     tweets = twitter_api.GetSearch(raw_query=raw_query)
