@@ -30,13 +30,13 @@ def findSentimentsByUserId(userId):
         metric.mentions = metric_dict["mentions"]
 
     if len(cards) > 0:
-        # latest_id = cards[0].id
-        # __createFile(latest_id)
+        latest_id = cards[0].id
+        __createFile(latest_id)
 
         for card in cards:
             card.sentiment = predictor.predict(card.content)
             metric.incrementStatusCount(card.sentiment)
-            firebase_service.updateEntity(card)
+            firebase_service.createEntity(card.to_dict() , "cards")
         
         firebase_service.updateEntity(metric.to_dict(), metric.id, "metrics")
 

@@ -13,7 +13,7 @@ import {
   MatToolbarModule,
   MatSidenavModule,
   MatSnackBarModule,
-  MatSnackBar} from '@angular/material';
+  MatListModule} from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +28,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserComponent } from './content/user/user.component';
 import { HammertimeDirective } from './hammertime.directive';
+import { StatisticsComponent } from './content/statistics/statistics.component';
+import { ChartsModule } from 'ng2-charts';
+import { RankingComponent } from './content/ranking/ranking.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import { HammertimeDirective } from './hammertime.directive';
     ContentComponent,
     WelcomeComponent,
     UserComponent,
-    HammertimeDirective
+    HammertimeDirective,
+    StatisticsComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,9 @@ import { HammertimeDirective } from './hammertime.directive';
     MatButtonModule,
     FlexLayoutModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ChartsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

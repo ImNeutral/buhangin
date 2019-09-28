@@ -9,7 +9,7 @@ db = firestore.client()
 
 def createEntity(entity, collectionName):
     try:
-        if collectionName != "metrics":
+        if collectionName != "metrics" and collectionName != "cards":
             entity["id"] = str(uuid.uuid1())   
         db.collection(collectionName).document(entity["id"]).set(entity)
         return entity

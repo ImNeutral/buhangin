@@ -1,0 +1,14 @@
+
+<div class="statistics-upper-nav">
+        <button mat-raised-button (click)="navigateToStatistics()">Statistics</button>
+        <button mat-raised-button class="green font-white">Ranking</button>
+</div>
+<div class="ranking">
+    <div>
+        <mat-list role="list">
+            <mat-list-item  *ngFor="let ranking of rankings; let i=index" role="listitem" class="ranking-item">
+                {{ i+1 }}. {{ ranking }}
+            </mat-list-item>
+        </mat-list>                  
+    </div>
+</div>
