@@ -1,0 +1,6 @@
+# For RNN test
+keras-2.3.0
+tensorflow-1.14.0
+
+# For Naive Bayes test
+nltk-3.4.5
