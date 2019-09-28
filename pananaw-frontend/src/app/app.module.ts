@@ -11,7 +11,9 @@ import {
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatSidenavModule} from '@angular/material';
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatSnackBar} from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
@@ -53,7 +55,8 @@ import { HammertimeDirective } from './hammertime.directive';
     MatCardModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

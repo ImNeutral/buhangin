@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, keyframes, animate, transition } from '@angular/animations';
 import * as kf from './../../../@shared/model/keyframes';
 import { CardModel, Sentiment, Status } from 'src/@shared/model/card.model';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-feed',
@@ -76,7 +77,7 @@ export class FeedComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     // set cards to fetch 5 at a time only
@@ -93,8 +94,12 @@ export class FeedComponent implements OnInit {
       // wailt 1 second before removing the element
       setTimeout(() => 
         {
-          this.cards.pop();  
-          this.cards.splice(0, 0, this.card_sample4);
+          this.cards.pop();  // pop only for testing, mark only card as archive
+          if(state == "slideOutLeft") {
+            this.openSnackBar("Item Archived!", "", "green");
+          } else {
+            this.openSnackBar("Marked as needs action.", "", "red");
+          }
         },
         1000);
     }
@@ -120,5 +125,13 @@ export class FeedComponent implements OnInit {
       isTop = true;
     }
     return isTop;
+  }
+
+  openSnackBar(message: string, action: string, panelClass: string) {
+    this._snackBar.open(message, action, {
+      duration: 1500,
+      verticalPosition: "top",
+      panelClass: panelClass
+    });
   }
 }
