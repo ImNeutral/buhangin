@@ -6,9 +6,7 @@ cred = credentials.Certificate("lib/serviceAccountKey.json")
 default_app = initialize_app(cred)
 db = firestore.client()
 
-collectionName = ""
-
-def createEntity(entity):
+def createEntity(entity, collectionName):
     try:
         entity["id"] = str(uuid.uuid1())
         db.collection(collectionName).document(entity["id"]).set(entity)
@@ -16,16 +14,22 @@ def createEntity(entity):
     except Exception as e:
         return f"An Error Occured: {e}" 
 
-def updateEntity(entity, entityId):
+def updateEntity(entity, entityId, collectionName):
     try:
         db.collection(collectionName).document(entityId).update(entity)
         return entity
     except Exception as e:
         return f"An Error Occured: {e}"
 
-def deleteEntity(entityId):
+def deleteEntity(entityId, collectionName):
     try:
         db.collection(collectionName).document(entityId).delete()
         return entityId
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+def findEntity(entityId, collectionName):
+    try:
+        return db.collection(collectionName).document(entityId).get().to_dict()
     except Exception as e:
         return f"An Error Occured: {e}"
