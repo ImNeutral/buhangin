@@ -1,6 +1,6 @@
 import twitter
 import urllib
-from classes import Card
+from modules.classes import Card
 
 # Constants
 consumer_key = "fTww4ZZPy2wX9EnXT1g7zuobM"
@@ -52,6 +52,8 @@ def fetch(query):
         "tweet_mode": "extended",
         "count": tweets_per_query 
     })
+
+    print(raw_query)
 
     tweets = twitter_api.GetSearch(raw_query=raw_query)
     cards = [__create_card_from_tweet(tweet) for tweet in tweets]
