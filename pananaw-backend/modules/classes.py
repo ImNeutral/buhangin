@@ -17,7 +17,7 @@ class Status:
     DONE = "done"
 
 class Card:
-    def __init__(self, id, content, link, date_posted, num_mentions):
+    def __init__(self, id, content, link, date_posted, num_mentions, location):
         self.id = id
         self.content = content
         self.sentiment = Sentiment.NORMAL
@@ -30,6 +30,7 @@ class Card:
         self.hour_posted = date_posted.hour
         self.minute_posted = date_posted.minute
         self.num_mentions = num_mentions
+        self.location = location
 
     def to_dict(self):
         return {
@@ -44,7 +45,8 @@ class Card:
             "day_posted" : self.day_posted,
             "hour_posted" : self.hour_posted,
             "minute_posted" : self.minute_posted,
-            "num_mentions" : self.num_mentions
+            "num_mentions" : self.num_mentions,
+            "location" : self.location
         }
 
 class Metric:
@@ -76,3 +78,4 @@ class Metric:
             self.good = self.good + 1
         else:
             self.bad = self.bad + 1
+
