@@ -35,6 +35,7 @@ import { TruncatePipe } from 'src/@shared/pipe/truncate.pipe';
 import { ActionModalComponent } from './content/actions/action-modal/action-modal.component';
 import { HammertimeDirective } from './hammertime.directive';
 import { UserComponent } from './content/user/user.component';
+import { ActionEmailModalComponent } from './content/actions/action-email-modal/action-email-modal.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { UserComponent } from './content/user/user.component';
     ActionsComponent,
     TruncatePipe,
     ActionModalComponent,
-    HammertimeDirective
+    HammertimeDirective,
+    ActionEmailModalComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import { UserComponent } from './content/user/user.component';
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ActionModalComponent
+    ActionModalComponent,
+    ActionEmailModalComponent
   ]
 })
 export class AppModule { }

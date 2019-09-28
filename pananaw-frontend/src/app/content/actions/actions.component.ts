@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CardModel, Status, Sentiment } from './../../../@shared/model/card.model'
 import { MatListOption, MatDialog } from '@angular/material';
 import { ActionModalComponent } from './action-modal/action-modal.component';
+import { element } from 'protractor';
+import { UserModel } from 'src/@shared/model/user.model';
+import { ActionEmailModalComponent } from './action-email-modal/action-email-modal.component';
 
 @Component({
   selector: 'app-actions',
@@ -10,6 +13,13 @@ import { ActionModalComponent } from './action-modal/action-modal.component';
 })
 export class ActionsComponent implements OnInit {
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  currentUser: UserModel = {
+    uid: '3',
+    name: 'John Gokongwei',
+    email: 'john@gmail.com',
+    handler: '@Robinsons',
+    contact: ['bea@mailinator.com', 'maria@mailinator.com']
+  }
   cardList: CardModel[] = [
       {
         uid: '1',
@@ -114,9 +124,27 @@ export class ActionsComponent implements OnInit {
     this.openDialog(cardDetails);
   }
 
-  getCheckedItems(cardList: any){
+  getCheckedItems(cardList){
     console.log(cardList);
+    let checkedCards = [];
+    cardList.forEach(function(element){
+      if(element.checked){
+        checkedCards.push(element);
+      }
+    });
+    this.sendEmail(checkedCards);
   }
+
+
+  sendEmail(checkedCards){
+    const dialogRef = this.dialog.open(ActionEmailModalComponent, {
+      width: '250px',
+      data: {senderDetails: this.currentUser, 
+        checkedCards: checkedCards
+      }
+    }).updateSize("500px");
+  }
+
 
   openDialog(card): void {
     const dialogRef = this.dialog.open(ActionModalComponent, {
