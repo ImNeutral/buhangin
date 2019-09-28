@@ -11,7 +11,11 @@ import {
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatSidenavModule} from '@angular/material';
+  MatListModule,
+  MatExpansionModule,
+  MatCheckboxModule,
+  MatDialogModule
+} from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +29,9 @@ import { ContentComponent } from './content/content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserComponent } from './user/user.component';
+import { ActionsComponent } from './content/actions/actions.component';
+import { TruncatePipe } from 'src/@shared/pipe/truncate.pipe';
+import { ActionModalComponent } from './content/actions/action-modal/action-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +41,10 @@ import { UserComponent } from './user/user.component';
     FeedComponent,
     ContentComponent,
     WelcomeComponent,
-    UserComponent
+    UserComponent,
+    ActionsComponent,
+    TruncatePipe,
+    ActionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +61,15 @@ import { UserComponent } from './user/user.component';
     MatCardModule,
     MatButtonModule,
     FlexLayoutModule,
-    MatSidenavModule
+    MatListModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ActionModalComponent
+  ]
 })
 export class AppModule { }

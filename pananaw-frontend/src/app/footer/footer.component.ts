@@ -22,7 +22,7 @@ export class FooterComponent implements OnInit {
   }
 
   actions() {  
-    this.router.navigate(['feed']);
+    this.router.navigate(['actions']);
   }
 
   user() {  
