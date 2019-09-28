@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FeedComponent } from './content/feed/feed.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { UserComponent } from './user/user.component';
 import { ActionsComponent } from './content/actions/actions.component';
+import { UserComponent } from './content/user/user.component';
 
 
 const routes: Routes = [

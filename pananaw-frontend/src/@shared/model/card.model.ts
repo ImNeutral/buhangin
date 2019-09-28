@@ -7,8 +7,12 @@ export interface CardModel {
     numShares ?: number;
     numReacts ?: number;
     status: Status;
-    datePosted: Date;
     checked ?: boolean;
+    yearPosted: number;
+    monthPosted: number;	
+    dayPosted: number;	
+    hourPosted: number;	
+    minutesPosted: number;	
 }
 
 export enum Sentiment {GOOD = 'Good', BAD = 'Bad', NORMAL = 'Normal'}
