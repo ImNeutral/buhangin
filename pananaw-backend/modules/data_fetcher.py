@@ -10,7 +10,7 @@ access_token_key = "1077197211497185281-KlMzZwwJihO7q4snVABjC6FfqKl4BD"
 access_token_secret = "zfu8cJ5JLtjtkAemhCG5YLmOVOi2fR8CaHGjuJ8W28j4K"
 base_twitter_link = "https://www.twitter.com"
 tweet_date_format = "%a %b %d %H:%M:%S %z %Y"
-tweets_per_query = 100
+tweets_per_query = 50
 
 # Global variables
 twitter_api = None
