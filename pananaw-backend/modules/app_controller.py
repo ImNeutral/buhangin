@@ -1,8 +1,49 @@
 from flask import Flask, request, jsonify
 from modules import firebase_service
 from modules import email_service
+from modules import data_fetcher
+from modules import predictor
+from modules.classes import Metric
 
 app = Flask(__name__)
+
+## PREDICTOR ##
+
+@app.route("/find-sentiments/<userId>", methods=["POST"])
+def findSentimentsByUserId(userId):
+    user = firebase_service.findEntity(userId, "users")
+    cards = data_fetcher.fetch(user["handler"], __getLatestPostId())
+
+    metric_id = firebase_service.__generateMetricId()
+    metric_dict = firebase_service.findEntity(metric_id, "metrics")
+    metric = Metric()
+    
+    if metric_dict is None:
+        firebase_service.createEntity(metric.to_dict(), "metrics")
+    else:
+        metric.id = metric_dict["id"]
+        metric.year = metric_dict["year"]
+        metric.month = metric_dict["month"]
+        metric.good = metric_dict["good"]
+        metric.normal = metric_dict["normal"]
+        metric.bad = metric_dict["bad"]
+        metric.mentions = metric_dict["mentions"]
+
+    if len(cards) > 0:
+        # latest_id = cards[0].id
+        # __createFile(latest_id)
+
+        for card in cards:
+            card.sentiment = predictor.predict(card.content)
+            metric.incrementStatusCount(card.sentiment)
+            firebase_service.updateEntity(card)
+        
+        firebase_service.updateEntity(metric.to_dict(), metric.id, "metrics")
+
+    return jsonify({"success" : True}), 200
+        
+
+## PREDICTOR ##
 
 ## CARD ##
 
@@ -66,3 +107,14 @@ def send_email():
     return jsonify({ "sent": is_sent }), 200
 
 ## EMAIL ##
+
+def __createFile(latest_id):
+    f = open("lib/latest-post-id.txt", 'w')
+    f.write(latest_id)
+    f.close()
+
+def __getLatestPostId():
+    f = open("lib/latest-post-id.txt", "r")
+    content = f.read()
+    f.close()
+    return content

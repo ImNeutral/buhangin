@@ -1,6 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, initialize_app
 import uuid
+from datetime import datetime
 
 cred = credentials.Certificate("lib/serviceAccountKey.json")
 default_app = initialize_app(cred)
@@ -8,7 +9,8 @@ db = firestore.client()
 
 def createEntity(entity, collectionName):
     try:
-        entity["id"] = str(uuid.uuid1())
+        if collectionName != "metrics":
+            entity["id"] = str(uuid.uuid1())   
         db.collection(collectionName).document(entity["id"]).set(entity)
         return entity
     except Exception as e:
@@ -33,3 +35,7 @@ def findEntity(entityId, collectionName):
         return db.collection(collectionName).document(entityId).get().to_dict()
     except Exception as e:
         return f"An Error Occured: {e}"
+
+def __generateMetricId():
+    return f"{datetime.now().month}-{datetime.now().year}"
+   
