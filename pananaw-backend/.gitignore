@@ -3,3 +3,6 @@
 
 # Firebase Service Account Key
 serviceAccountKey.json
+
+# Pycache
+*/__pycache__
