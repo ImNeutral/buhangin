@@ -9,8 +9,8 @@ db = firestore.client()
 user_ref = db.collection('users')
 
 def createUser(user):
-    user["id"] = str(uuid.uuid1())
     try:
+        user["id"] = str(uuid.uuid1())
         user_ref.document(user["id"]).set(user)
         return user
     except Exception as e:
@@ -21,4 +21,12 @@ def updateUser(user, userId):
         user_ref.document(userId).update(user)
         return user
     except Exception as e:
-        return f"An Error Occured: {e}" 
+        return f"An Error Occured: {e}"
+
+def deleteUser(userId):
+    try:
+        user_ref.document(userId).delete()
+        return userId
+    except Exception as e:
+        return f"An Error Occured: {e}"
+    

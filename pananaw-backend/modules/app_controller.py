@@ -9,12 +9,8 @@ def createUser():
 
 @app.route("/user/<id>", methods=["GET"])
 def findUserById(id):
-    return id
-
-@app.route("/user/<id>", methods=["PUT"])
-def updateUserById(id):
-    return jsonify(firebase_service.updateUser(request.json, id)), 200
+    return jsonify(firebase_service.findUserById(id)), 200
 
 @app.route("/user/<id>", methods=["DELETE"])
 def deleteUserById(id):
-    return request.data
+    return jsonify({"User deleted id" : firebase_service.deleteUser(id)}), 200
