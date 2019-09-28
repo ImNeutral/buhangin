@@ -24,6 +24,7 @@ import { FeedComponent } from './content/feed/feed.component';
 import { ContentComponent } from './content/content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FooterComponent,
     FeedComponent,
     ContentComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

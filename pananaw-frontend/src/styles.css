@@ -33,3 +33,31 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 #welcome-title {
   text-align: center;
 }
+
+.user {
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 30px;
+}
+
+#user-img img {
+  height: 200px;
+  width: auto;
+}
+
+.user #details table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user #details table td.label {
+  text-align: right;
+  font-weight: bold;
+}
+.user #details table td.detail {
+  text-align: left;
+  padding-left: 15px;
+}
+
+
