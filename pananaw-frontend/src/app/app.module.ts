@@ -1,16 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
+import { 
+  MatFormFieldModule, 
+  MatSelectModule,
+  MatInputModule, 
+  MatTabsModule, 
+  MatIconModule, 
+  MatCardModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatSidenavModule} from '@angular/material';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule } from '@angular/material';
+import { environment } from 'src/environments/environment';
+import { FooterComponent } from './footer/footer.component';
+import { FeedComponent } from './content/feed/feed.component';
+import { ContentComponent } from './content/content.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    FooterComponent,
+    FeedComponent,
+    ContentComponent,
+    WelcomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +43,15 @@ import { MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule } fr
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule,
+    MatToolbarModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    MatCardModule,
+    MatButtonModule,
+    FlexLayoutModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
