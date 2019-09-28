@@ -1,2 +1,5 @@
 # Pycache
-__pycache__
+*/__pycache__
+
+# Gmail stuff
+*/*.pickle
