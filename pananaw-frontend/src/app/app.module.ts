@@ -1,17 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
+import { 
+  MatFormFieldModule, 
+  MatSelectModule,
+  MatInputModule, 
+  MatTabsModule, 
+  MatIconModule, 
+  MatCardModule,
+  MatButtonModule } from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule, MatIconModule } from '@angular/material';
 import { environment } from 'src/environments/environment';
 import { FooterComponent } from './footer/footer.component';
 import { FeedComponent } from './content/feed/feed.component';
 import { ContentComponent } from './content/content.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +28,8 @@ import { ContentComponent } from './content/content.component';
     MainComponent,
     FooterComponent,
     FeedComponent,
-    ContentComponent
+    ContentComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,9 @@ import { ContentComponent } from './content/content.component';
     MatTabsModule,
     MatIconModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
