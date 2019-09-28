@@ -1,0 +1,5 @@
+# Python Environment
+/buhangin-api/venv
+
+# Firebase Service Account Key
+serviceAccountKey.json
