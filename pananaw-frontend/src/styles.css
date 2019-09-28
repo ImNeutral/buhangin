@@ -60,4 +60,39 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding-left: 15px;
 }
 
+.feeds {
+  padding-top: 180px;
+}
 
+.feed {
+  text-align: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 50px;
+  height: 200px;
+  text-align: justify;
+  color: white;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  position: absolute !important;
+}
+
+.feed.shadow {
+  box-shadow: 2px 8px 9px 1px gray !important;
+}
+
+.feed-empty {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.green {
+  background-color: #42a363;
+}
+
+.red {
+  background-color: #f26a65;
+}
