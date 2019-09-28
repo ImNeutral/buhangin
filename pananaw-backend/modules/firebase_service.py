@@ -10,4 +10,15 @@ user_ref = db.collection('users')
 
 def createUser(user):
     user["id"] = str(uuid.uuid1())
-    return user_ref.document(user["id"]).set(user)
+    try:
+        user_ref.document(user["id"]).set(user)
+        return user
+    except Exception as e:
+        return f"An Error Occured: {e}" 
+
+def updateUser(user, userId):
+    try:
+        user_ref.document(userId).update(user)
+        return user
+    except Exception as e:
+        return f"An Error Occured: {e}" 

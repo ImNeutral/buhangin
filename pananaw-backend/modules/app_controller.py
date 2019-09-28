@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/user/save", methods=["POST"])
 def createUser():
-    return firebase_service.createUser(request.json)
+    return jsonify(firebase_service.createUser(request.json)), 200
 
 @app.route("/user/<id>", methods=["GET"])
 def findUserById(id):
@@ -13,7 +13,7 @@ def findUserById(id):
 
 @app.route("/user/<id>", methods=["PUT"])
 def updateUserById(id):
-    return request.data
+    return jsonify(firebase_service.updateUser(request.json, id)), 200
 
 @app.route("/user/<id>", methods=["DELETE"])
 def deleteUserById(id):
