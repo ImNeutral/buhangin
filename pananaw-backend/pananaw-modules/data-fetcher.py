@@ -1,5 +1,5 @@
 import twitter
-import re
+import urllib
 
 # Constants
 consumer_key = "fTww4ZZPy2wX9EnXT1g7zuobM"
@@ -7,6 +7,7 @@ consumer_secret = "gHqfbkYWJfIEpDzotdKTmDrMBEhUeHb1TWrFwjHQsZSyfx0XV0"
 access_token_key = "1077197211497185281-KlMzZwwJihO7q4snVABjC6FfqKl4BD"
 access_token_secret = "zfu8cJ5JLtjtkAemhCG5YLmOVOi2fR8CaHGjuJ8W28j4K"
 base_twitter_link = "https://www.twitter.com"
+tweets_per_query = 100
 
 # Global variables
 twitter_api = None
@@ -70,13 +71,18 @@ def __init_twitter_api():
             access_token_secret=access_token_secret
         )
 
-def fetch():
-    tweets = twitter_api.GetSearch(
-            raw_query="q=%40Lamudi_PH&f=live&tweet_mode=extended&count=5")
+def fetch(query):
+    global tweets_per_query
 
-    tweet = tweets[0]
+    raw_query = urllib.parse.urlencode({
+        "q": query,
+        "f": "live",
+        "tweet_mode": "extended",
+        "count": tweets_per_query 
+    })
+
+    tweets = twitter_api.GetSearch(raw_query=raw_query)
     cards = [__create_card_from_tweet(tweet) for tweet in tweets]
-
     return cards
 
 __init_twitter_api()
