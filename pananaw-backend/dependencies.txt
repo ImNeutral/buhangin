@@ -6,7 +6,7 @@ tensorflow-1.14.0
 nltk-3.4.5
 
 # Flask 
-pip install Flask
+pip install Flask 1.1.1
 
 # Firebase
-pip install firebase_admin
+pip install firebase_admin 3.0.0
