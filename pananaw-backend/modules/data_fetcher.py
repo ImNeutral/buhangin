@@ -23,6 +23,11 @@ def __pretty(d, indent=0):
         else:
             print('\t' * (indent+1) + str(value))
 
+def __create_location_from_tweet(tweet):
+    if tweet.place:
+        return tweet.place["name"]
+    return None
+
 def __create_mentions_from_tweet(tweet, query):
     num_mentions = 0
     for user_mention in tweet.user_mentions:
@@ -43,11 +48,12 @@ def __create_link_from_tweet(tweet):
     return "{}/{}/status/{}".format(base_twitter_link, tweet.user.screen_name, tweet.id)
 
 def __create_card_from_tweet(tweet, query):
+    location = __create_location_from_tweet(tweet)
     num_mentions = __create_mentions_from_tweet(tweet, query)
     tweet_date = __create_datetime_from_tweet(tweet)
     tweet_link = __create_link_from_tweet(tweet)
     return Card(str(tweet.id), tweet.full_text, tweet_link, 
-            tweet_date, num_mentions)
+            tweet_date, num_mentions, location)
 
 def __init_twitter_api():
     global twitter_api
