@@ -1,11 +1,13 @@
 from keras.models import load_model
 from keras.preprocessing import sequence
 from keras.preprocessing.text import Tokenizer
-from classes import Sentiment
+from modules.classes import Sentiment 
+
+import sys
 
 # Files
-vocabulary_file = "../lib/vocab.txt"
-model_file = "../lib/trained.model"
+vocabulary_file = "lib/vocab.txt"
+model_file = "lib/trained.model"
 
 # Constants
 max_len = 50
