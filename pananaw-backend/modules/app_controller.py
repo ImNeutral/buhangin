@@ -65,11 +65,10 @@ def deleteUserById(id):
 
 @app.route("/email", methods=["POST"])
 def send_email():
-    json_data = request.get_json()
-    sender = json_data["sender"]
-    receiver = json_data["receiver"]
-    title = json_data["title"]
-    content = json_data["content"]
+    sender = request.json["sender"]
+    receiver = request.json["receiver"]
+    title = request.json["title"]
+    content = request.json["content"]
 
     is_sent = email_service.send_email(sender, receiver, title, content)
 

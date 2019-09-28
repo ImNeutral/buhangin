@@ -2,22 +2,13 @@ from keras.models import load_model
 from keras.preprocessing import sequence
 from keras.preprocessing.text import Tokenizer
 from modules.classes import Sentiment 
-<<<<<<< HEAD
-import tensorflow
-
-import sys
-=======
 import tensorflow as tf
->>>>>>> develop
+import re
 
 # Files
 vocabulary_file = "lib/vocab.txt"
 model_file = "lib/trained.model"
-<<<<<<< HEAD
-graph = tensorflow.get_default_graph()
-=======
 graph = None
->>>>>>> develop
 
 # Constants
 max_len = 50
@@ -28,6 +19,7 @@ tokenizer = None
 
 def __init_tokenizer():
     global vocabulary_file
+    global tokenizer
 
     tokenizer = Tokenizer()
 
@@ -38,7 +30,6 @@ def __init_tokenizer():
 
     # Assign integer ids for each word.
     tokenizer.fit_on_texts(vocabulary)
-    return tokenizer
 
 def __init_model():
     global model
@@ -50,28 +41,18 @@ def predict(text):
     global model
     global max_len
     global graph
+    global tokenizer
 
-    tokenizer = __init_tokenizer()
-    model = __init_model()
-
+    # sanitize input
     text = text.lower()
+    re.sub(r'[^\w]', '', text)
+
     text_ids = tokenizer.texts_to_sequences([text])
     padded_text_ids = sequence.pad_sequences(text_ids, maxlen=max_len)
-<<<<<<< HEAD
-    prediction = model.predict(padded_text_ids)
-
-    if (prediction >= 0.75):
-        return Sentiment.GOOD
-    elif (prediction < 0.75 and prediction > 0.25):
-        return Sentiment.NORMAL
-    else:
-        return Sentiment.BAD
-=======
 
     with graph.as_default():
         prediction = model.predict(padded_text_ids)
 
-        print(prediction)
         if (prediction >= 0.75):
             return Sentiment.GOOD
         elif (prediction < 0.75 and prediction > 0.25):
@@ -81,4 +62,3 @@ def predict(text):
 
 __init_model()
 __init_tokenizer()
->>>>>>> develop
