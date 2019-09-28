@@ -15,7 +15,7 @@ class Status:
     DONE = "done"
 
 class Card:
-    def __init__(self, id, content, link, yearPosted, monthPosted, dayPosted, hourPosted, minutesPosted):
+    def __init__(self, id, content, link, date_posted, num_reacts, num_shares):
         self.id = id
         self.content = content
         self.sentiment = Sentiment.NORMAL
@@ -23,26 +23,11 @@ class Card:
         self.link = link
         self.numShares = 0
         self.numReacts = 0
-        self.yearPosted = yearPosted
-        self.monthPosted = monthPosted
-        self.dayPosted = dayPosted
-        self.hourPosted = hourPosted
-        self.minutesPosted = minutesPosted
         self.status = Status.NEW
-
-class User:
-    def __init__(self, id, name, email, contacts):
-        self.id = id
-        self.name = name
-        self.contacts = contacts # [‘bea@gmail.com’, ‘ian@gmail.com’]
-        self.email = email
-
-class Metrics:
-    def __init__(self, id, year, month, pie, mentions, actedItems, interactions):
-        self.id = id
-        self.year = year
-        self.month = month
-        self.pie = pie # json={ 'good': 50, 'bad': 20, 'normal': 30}
-        self.mentions = mentions
-        self.actedItems = actedItems
-        self.interactions = interactions
+        self.year_posted = date_posted.year
+        self.month_posted = date_posted.month
+        self.day_posted = date_posted.day
+        self.hour_posted = date_posted.hour
+        self.minute_posted = date_posted.minute
+        self.num_reacts = num_reacts
+        self.num_shares = num_shares

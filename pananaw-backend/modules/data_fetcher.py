@@ -1,5 +1,6 @@
 import twitter
 import urllib
+import datetime
 from modules.classes import Card
 
 # Constants
@@ -21,13 +22,21 @@ def __pretty(d, indent=0):
         else:
             print('\t' * (indent+1) + str(value))
 
+def __create_datetime_from_tweet(tweet):
+    date = datetime.datetime.strptime(
+        tweet.created_at, "%a %b %d %H:%M:%S %z %Y")
+
+    return date
+
 def __create_link_from_tweet(tweet):
     global base_twitter_link
     return "{}/{}/status/{}".format(base_twitter_link, tweet.user.screen_name, tweet.id)
 
 def __create_card_from_tweet(tweet):
+    tweet_date = __create_datetime_from_tweet(tweet)
     tweet_link = __create_link_from_tweet(tweet)
-    return Card(str(tweet.id), tweet.full_text, tweet_link, tweet.created_at)
+    return Card(str(tweet.id), tweet.full_text, tweet_link, 
+            tweet_date, tweet.favorite_count, tweet.retweet_count)
 
 def __init_twitter_api():
     global twitter_api
@@ -52,8 +61,6 @@ def fetch(query):
         "tweet_mode": "extended",
         "count": tweets_per_query 
     })
-
-    print(raw_query)
 
     tweets = twitter_api.GetSearch(raw_query=raw_query)
     cards = [__create_card_from_tweet(tweet) for tweet in tweets]
