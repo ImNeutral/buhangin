@@ -4,3 +4,9 @@ tensorflow-1.14.0
 
 # For Naive Bayes test
 nltk-3.4.5
+
+# Flask 
+pip install Flask
+
+# Firebase
+pip install firebase_admin
