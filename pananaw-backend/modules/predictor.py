@@ -3,6 +3,7 @@ from keras.preprocessing import sequence
 from keras.preprocessing.text import Tokenizer
 from modules.classes import Sentiment 
 import tensorflow as tf
+import re
 
 # Files
 vocabulary_file = "lib/vocab.txt"
@@ -18,6 +19,7 @@ tokenizer = None
 
 def __init_tokenizer():
     global vocabulary_file
+    global tokenizer
 
     tokenizer = Tokenizer()
 
@@ -28,7 +30,6 @@ def __init_tokenizer():
 
     # Assign integer ids for each word.
     tokenizer.fit_on_texts(vocabulary)
-    return tokenizer
 
 def __init_model():
     global model
@@ -40,11 +41,12 @@ def predict(text):
     global model
     global max_len
     global graph
+    global tokenizer
 
-    tokenizer = __init_tokenizer()
-    model = __init_model()
-
+    # sanitize input
     text = text.lower()
+    re.sub(r'[^\w]', '', text)
+
     text_ids = tokenizer.texts_to_sequences([text])
     padded_text_ids = sequence.pad_sequences(text_ids, maxlen=max_len)
 
