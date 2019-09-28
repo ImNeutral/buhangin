@@ -21,13 +21,7 @@ def findSentimentsByUserId(userId):
     if metric_dict is None:
         firebase_service.createEntity(metric.to_dict(), "metrics")
     else:
-        metric.id = metric_dict["id"]
-        metric.year = metric_dict["year"]
-        metric.month = metric_dict["month"]
-        metric.good = metric_dict["good"]
-        metric.normal = metric_dict["normal"]
-        metric.bad = metric_dict["bad"]
-        metric.mentions = metric_dict["mentions"]
+        metric.to_obj(metric_dict)
 
     if len(cards) > 0:
         latest_id = cards[0].id

@@ -70,8 +70,16 @@ class Metric:
             "mentions" : self.mentions,
         }
 
-    def incrementStatusCount(self, status):
-        print(self.bad)       
+    def to_obj(self, metric_dict):
+        self.id = metric_dict["id"]
+        self.year = metric_dict["year"]
+        self.month = metric_dict["month"]
+        self.good = metric_dict["good"]
+        self.normal = metric_dict["normal"]
+        self.bad = metric_dict["bad"]
+        self.mentions = metric_dict["mentions"]
+
+    def incrementStatusCount(self, status): 
         if status == "normal":
             self.normal = self.normal + 1
         elif status == "good":
