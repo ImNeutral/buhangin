@@ -1,5 +1,2 @@
-# Python Environment
-/buhangin-api/venv
-
 # Pycache
-*/__pycache__
+__pycache__

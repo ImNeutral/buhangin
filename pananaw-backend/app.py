@@ -1,4 +1,4 @@
-from modules import controller
+from modules import app_controller
 
 if __name__ == '__main__':
-    controller.app.run()
+    app_controller.app.run()

@@ -34,7 +34,7 @@ class User:
     def __init__(self, id, name, email, contacts):
         self.id = id
         self.name = name
-        self.contacts = contacts
+        self.contacts = contacts # [‘bea@gmail.com’, ‘ian@gmail.com’]
         self.email = email
 
 class Metrics:
@@ -42,7 +42,7 @@ class Metrics:
         self.id = id
         self.year = year
         self.month = month
-        self.pie = pie
+        self.pie = pie # json={ 'good': 50, 'bad': 20, 'normal': 30}
         self.mentions = mentions
         self.actedItems = actedItems
         self.interactions = interactions
