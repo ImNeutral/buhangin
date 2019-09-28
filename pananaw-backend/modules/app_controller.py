@@ -4,6 +4,7 @@ from modules import email_service
 from modules import data_fetcher
 from modules import predictor
 from modules.classes import Metric
+from modules.classes import Rank
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def findSentimentsByUserId(userId):
     user = firebase_service.findEntity(userId, "users")
     cards = data_fetcher.fetch(user["handler"], __getLatestPostId())
 
-    metric_id = firebase_service.__generateMetricId()
+    metric_id = firebase_service.__generateId()
     metric_dict = firebase_service.findEntity(metric_id, "metrics")
     metric = Metric()
     
@@ -31,6 +32,19 @@ def findSentimentsByUserId(userId):
             card.sentiment = predictor.predict(card.content)
             metric.incrementStatusCount(card.sentiment)
             firebase_service.createEntity(card.to_dict() , "cards")
+
+            rank_id = firebase_service.__generateId()
+            # rank_dict = firebase_service.findEntity(rank_id, "ranks")
+            # rank = Rank(card.location)
+
+            # if rank_dict is None:
+            #     firebase_service.createEntity(metric.to_dict(), "ranks")
+            # else:
+            #     rank.to_obj(rank_dict)
+            #     rank.incrementGoodCount(card.location)
+            #     firebase_service.updateEntity(rank.to_dict(), rank.id, "ranks")
+    else:
+        metric.to_obj(metric_dict)
         
         firebase_service.updateEntity(metric.to_dict(), metric.id, "metrics")
 

@@ -40,12 +40,12 @@ class Card:
             "source" : self.source,
             "link" : self.link,
             "status" : self.status,
-            "year_posted" : self.year_posted,
-            "month_posted" : self.month_posted,
-            "day_posted" : self.day_posted,
-            "hour_posted" : self.hour_posted,
-            "minute_posted" : self.minute_posted,
-            "num_mentions" : self.num_mentions,
+            "yearPosted" : self.year_posted,
+            "monthPosted" : self.month_posted,
+            "dayPosted" : self.day_posted,
+            "hourPosted" : self.hour_posted,
+            "minutePosted" : self.minute_posted,
+            "numMentions" : self.num_mentions,
             "location" : self.location
         }
 
@@ -87,3 +87,25 @@ class Metric:
         else:
             self.bad = self.bad + 1
 
+
+class Rank:
+    def __init__(self, location):
+        self.id = f"{datetime.now().month}-{datetime.now().year}"
+        self.good = 0
+        self.location = location
+
+    def to_dict(self):
+        return {
+            "id" : self.id,
+            "location" : self.location,
+            "good" : self.good,
+        }
+
+    def to_obj(self, rank_dict):
+        self.id = rank_dict["id"]
+        self.location = rank_dict["location"]
+        self.good = rank_dict["good"]
+
+    def incrementGoodCount(self, location):
+        if (location == self.location and f"{datetime.now().month}-{datetime.now().year}" == self.id):
+            self.good += 0

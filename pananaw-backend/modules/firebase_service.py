@@ -36,6 +36,6 @@ def findEntity(entityId, collectionName):
     except Exception as e:
         return f"An Error Occured: {e}"
 
-def __generateMetricId():
+def __generateId():
     return f"{datetime.now().month}-{datetime.now().year}"
    
