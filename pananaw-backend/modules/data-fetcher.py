@@ -1,5 +1,6 @@
 import twitter
 import urllib
+from classes import Card
 
 # Constants
 consumer_key = "fTww4ZZPy2wX9EnXT1g7zuobM"
@@ -11,35 +12,6 @@ tweets_per_query = 100
 
 # Global variables
 twitter_api = None
-
-# Classes
-class Source:
-    TWITTER = "twitter"
-    # FACEBOOK = "facebook"
-    # INSTAGRAM = "instagram"
-
-class Sentiment:
-    GOOD = "good"
-    BAD = "bad"
-    NORMAL = "normal"
-
-class Status:
-    NEW = "new"
-    ARCHIVED = "archived"
-    PENDING = "pending"
-    DONE = "done"
-
-class Card:
-    def __init__(self, id, content, link, date_posted):
-        self.id = id
-        self.content = content
-        self.date_posted = date_posted
-        self.sentiment = Sentiment.NORMAL
-        self.source = Source.TWITTER
-        self.link = link
-        self.numShares = 0
-        self.numReacts = 0
-        self.status = Status.NEW
        
 def __pretty(d, indent=0):
     for key, value in d.items():
@@ -86,4 +58,3 @@ def fetch(query):
     return cards
 
 __init_twitter_api()
-    

@@ -1,6 +1,7 @@
 from keras.models import load_model
 from keras.preprocessing import sequence
 from keras.preprocessing.text import Tokenizer
+from classes import Sentiment
 
 # Files
 vocabulary_file = "../lib/vocab.txt"
@@ -43,11 +44,11 @@ def predict(text):
     prediction = model.predict(padded_text_ids)
 
     if (prediction >= 0.75):
-        return "pos"
+        return Sentiment.GOOD
     elif (prediction < 0.75 and prediction > 0.25):
-        return "neu"
+        return Sentiment.NORMAL
     else:
-        return "neg"
+        return Sentiment.BAD
 
 __init_model()
 __init_tokenizer()
