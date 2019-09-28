@@ -17,4 +17,16 @@ export class FooterComponent implements OnInit {
     this.router.navigate(['feed']);
   }
 
+  stats() {  
+    this.router.navigate(['feed']);
+  }
+
+  actions() {  
+    this.router.navigate(['feed']);
+  }
+
+  user() {  
+    this.router.navigate(['user']);
+  }
+
 }

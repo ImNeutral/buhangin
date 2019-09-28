@@ -9,7 +9,9 @@ import {
   MatTabsModule, 
   MatIconModule, 
   MatCardModule,
-  MatButtonModule } from '@angular/material';
+  MatButtonModule,
+  MatToolbarModule,
+  MatSidenavModule} from '@angular/material';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +23,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FeedComponent } from './content/feed/feed.component';
 import { ContentComponent } from './content/content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -40,10 +43,13 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatInputModule,
     MatTabsModule,
     MatIconModule,
+    MatToolbarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    FlexLayoutModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
