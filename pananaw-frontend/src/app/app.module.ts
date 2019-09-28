@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FeedComponent } from './content/feed/feed.component';
 import { ContentComponent } from './content/content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     FooterComponent,
     FeedComponent,
     ContentComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
