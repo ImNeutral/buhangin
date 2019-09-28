@@ -20,7 +20,11 @@ export class ActionsComponent implements OnInit {
         numShares: 4,
         numReacts: 57,
         status: Status.NEW,
-        datePosted: new Date()
+        yearPosted: 2019,
+        monthPosted: 1,
+        dayPosted: 11,
+        hourPosted: 4,	
+        minutesPosted: 12
       },
       {
         uid: '2',
@@ -31,7 +35,11 @@ export class ActionsComponent implements OnInit {
         numShares: 4,
         numReacts: 57,
         status: Status.NEW,
-        datePosted: new Date()
+        yearPosted: 2019,
+        monthPosted: 1,
+        dayPosted: 11,
+        hourPosted: 4,	
+        minutesPosted: 12
       },
       {
         uid: '3',
@@ -42,7 +50,11 @@ export class ActionsComponent implements OnInit {
         numShares: 4,
         numReacts: 57,
         status: Status.NEW,
-        datePosted: new Date()
+        yearPosted: 2019,
+        monthPosted: 1,
+        dayPosted: 11,
+        hourPosted: 4,	
+        minutesPosted: 12
       },
       {
         uid: '4',
@@ -53,7 +65,11 @@ export class ActionsComponent implements OnInit {
         numShares: 4,
         numReacts: 57,
         status: Status.NEW,
-        datePosted: new Date()
+        yearPosted: 2019,
+        monthPosted: 1,
+        dayPosted: 11,
+        hourPosted: 4,	
+        minutesPosted: 12
       },
       {
         uid: '5',
@@ -64,7 +80,11 @@ export class ActionsComponent implements OnInit {
         numShares: 4,
         numReacts: 57,
         status: Status.NEW,
-        datePosted: new Date()
+        yearPosted: 2019,
+        monthPosted: 1,
+        dayPosted: 11,
+        hourPosted: 4,	
+        minutesPosted: 12
       }
   ]
 

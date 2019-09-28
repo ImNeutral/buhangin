@@ -30,11 +30,11 @@ export class FeedComponent implements OnInit {
     source: "http://hello world",
     link: "link here",
     status: Status.NEW,
-    yearPosted: "2019",
-    monthPosted: "JANUARY",
-    dayPosted: "11",
-    hourPosted: "4",	
-    minutesPosted: "12"
+    yearPosted: 2019,
+    monthPosted: 1,
+    dayPosted: 11,
+    hourPosted: 4,	
+    minutesPosted: 12
   }
   card_sample2 : CardModel = {
     uid: "00000",
@@ -43,11 +43,11 @@ export class FeedComponent implements OnInit {
     source: "http://hello world",
     link: "link here",
     status: Status.NEW,
-    yearPosted: "2019",
-    monthPosted: "JANUARY",
-    dayPosted: "11",
-    hourPosted: "4",	
-    minutesPosted: "12"
+    yearPosted: 2019,
+    monthPosted: 1,
+    dayPosted: 11,
+    hourPosted: 4,	
+    minutesPosted: 12
   }
   card_sample3 : CardModel = {
     uid: "99111",
@@ -56,11 +56,11 @@ export class FeedComponent implements OnInit {
     source: "http://hello world",
     link: "link here",
     status: Status.NEW,
-    yearPosted: "2019",
-    monthPosted: "JANUARY",
-    dayPosted: "11",
-    hourPosted: "4",	
-    minutesPosted: "12"
+    yearPosted: 2019,
+    monthPosted: 1,
+    dayPosted: 11,
+    hourPosted: 4,	
+    minutesPosted: 12
   }
   card_sample4 : CardModel = {
     uid: "34567876",
@@ -69,11 +69,11 @@ export class FeedComponent implements OnInit {
     source: "http://hello world",
     link: "link here",
     status: Status.NEW,
-    yearPosted: "2019",
-    monthPosted: "JANUARY",
-    dayPosted: "11",
-    hourPosted: "4",	
-    minutesPosted: "12"
+    yearPosted: 2019,
+    monthPosted: 1,
+    dayPosted: 11,
+    hourPosted: 4,	
+    minutesPosted: 12
   }
 
 
