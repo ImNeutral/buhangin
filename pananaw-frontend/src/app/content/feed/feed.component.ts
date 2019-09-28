@@ -4,6 +4,8 @@ import { trigger, keyframes, animate, transition } from '@angular/animations';
 import * as kf from './../../../@shared/model/keyframes';
 import { CardModel, Sentiment, Status } from 'src/@shared/model/card.model';
 import { MatSnackBar } from '@angular/material';
+import { CardService } from 'src/@shared/service/card.service';
+import { ApiService } from 'src/@shared/service/api.service';
 
 @Component({
   selector: 'app-feed',
@@ -18,88 +20,42 @@ import { MatSnackBar } from '@angular/material';
 })
 
 export class FeedComponent implements OnInit {
+  cardUrl = "card";
   animationState: string;
   
   cards : CardModel[] = [];
+  cardsView : CardModel[] = [];
+  limitCardsPerView = 10;
+  
 
-  // card_samples below are sample, delete if real data comes
-  card_sample : CardModel = {
-    uid: "23124",
-    content: "Learn one way to build applications with Angular and reuse your code and abilities to build apps for any deployment target. For web, mobile web, native mobile and native desktop.",
-    sentiment: Sentiment.BAD,
-    source: "http://hello world",
-    link: "link here",
-    status: Status.NEW,
-    yearPosted: 2019,
-    monthPosted: 1,
-    dayPosted: 11,
-    hourPosted: 4,	
-    minutesPosted: 12
+  constructor(private _snackBar: MatSnackBar,
+              private cardService: CardService,
+              private apiService: ApiService) {
+    this.cardService.getAllNewCards().subscribe(cards => {
+      this.cards = cards;
+    });
   }
-  card_sample2 : CardModel = {
-    uid: "00000",
-    content: "Learn one way to build applications with Angular and reuse your code and abilities to build apps for any deployment target. For web, mobile web, native mobile and native desktop.",
-    sentiment: Sentiment.GOOD,
-    source: "http://hello world",
-    link: "link here",
-    status: Status.NEW,
-    yearPosted: 2019,
-    monthPosted: 1,
-    dayPosted: 11,
-    hourPosted: 4,	
-    minutesPosted: 12
-  }
-  card_sample3 : CardModel = {
-    uid: "99111",
-    content: "Learn one way to build applications with Angular and reuse your code and abilities to build apps for any deployment target. For web, mobile web, native mobile and native desktop.",
-    sentiment: Sentiment.BAD,
-    source: "http://hello world",
-    link: "link here",
-    status: Status.NEW,
-    yearPosted: 2019,
-    monthPosted: 1,
-    dayPosted: 11,
-    hourPosted: 4,	
-    minutesPosted: 12
-  }
-  card_sample4 : CardModel = {
-    uid: "34567876",
-    content: "Learn one way to build applications with Angular and reuse your code and abilities to build apps for any deployment target. For web, mobile web, native mobile and native desktop.",
-    sentiment: Sentiment.GOOD,
-    source: "http://hello world",
-    link: "link here",
-    status: Status.NEW,
-    yearPosted: 2019,
-    monthPosted: 1,
-    dayPosted: 11,
-    hourPosted: 4,	
-    minutesPosted: 12
-  }
-
-
-  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    // set cards to fetch 5 at a time only
-    this.cards.push(this.card_sample);
-    this.cards.push(this.card_sample2);
-    this.cards.push(this.card_sample3);
   }
 
-  startAnimation(state, uid) {
+  startAnimation(state, card) {
     var topCard = this.cards[this.cards.length - 1];
-    if (!this.animationState && topCard.uid == uid) {
+    if (!this.animationState && topCard.id == card.id) {
       // set animation state
       this.animationState = state;
       // wailt 1 second before removing the element
       setTimeout(() => 
         {
-          this.cards.pop();  // pop only for testing, mark only card as archive
+          this.cards.pop();
           if(state == "slideOutLeft") {
+            card.status = Status.ARCHIVED;
             this.openSnackBar("Item Archived!", "", "green");
           } else {
+            card.status = Status.PENDING;
             this.openSnackBar("Marked as needs action.", "", "red");
           }
+          this.apiService.put( (this.cardUrl + "/" + card.id ), card);
         },
         1000);
     }
@@ -109,7 +65,7 @@ export class FeedComponent implements OnInit {
     this.animationState = '';
   }
 
-  setCustomClass(senti, uid) {
+  setCustomClass(senti) {
     var customClass = "green";
     if( Sentiment.BAD == senti ) {
       customClass = "red";
@@ -118,10 +74,10 @@ export class FeedComponent implements OnInit {
     return customClass;
   }
 
-  ifTop(uid) {
+  ifTop(card) {
     var topCard = this.cards[this.cards.length - 1];
     var isTop = false;
-    if(uid == topCard.uid) {
+    if(card.id == topCard.id) {
       isTop = true;
     }
     return isTop;
@@ -134,4 +90,5 @@ export class FeedComponent implements OnInit {
       panelClass: panelClass
     });
   }
+
 }
