@@ -38,7 +38,7 @@ import { UserComponent } from './content/user/user.component';
 import { StatisticsComponent } from './content/statistics/statistics.component';
 import { RankingComponent } from './content/ranking/ranking.component';
 import { ChartsModule } from 'ng2-charts';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import { ChartsModule } from 'ng2-charts';
     MatSidenavModule,
     MatSnackBarModule,
     ChartsModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

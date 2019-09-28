@@ -5,8 +5,11 @@ from modules import data_fetcher
 from modules import predictor
 from modules.classes import Metric
 from modules.classes import Rank
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+
 
 ## PREDICTOR ##
 
