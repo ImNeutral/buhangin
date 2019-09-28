@@ -69,14 +69,15 @@ def __is_new_account(tweet):
     threshold_date = datetime.now(create_date.tzinfo) - timedelta(days=30)
     return create_date <= threshold_date
 
-def fetch(query):
+def fetch(query, since_id=None):
     global tweets_per_query
 
     raw_query = urllib.parse.urlencode({
         "q": query,
         "f": "live",
         "tweet_mode": "extended",
-        "count": tweets_per_query 
+        "count": tweets_per_query,
+        "since_id": since_id 
     })
 
     tweets = twitter_api.GetSearch(raw_query=raw_query)
