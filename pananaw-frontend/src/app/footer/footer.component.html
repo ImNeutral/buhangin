@@ -1,15 +1,11 @@
-<div class="footer-container" layout-align='center center' layout='column'>
-    <button class="footer-item" (click)="feed()" mat-button>
-        <mat-icon>mic</mat-icon>
-    </button>
-    <button class="footer-item" (click)="feed()" mat-button>
-        <mat-icon>mic</mat-icon>
-    </button>
-    <button class="footer-item" (click)="feed()" mat-button>
-        <mat-icon>mic</mat-icon>
-    </button>
-    <button class="footer-item" (click)="feed()" mat-button>
-        <mat-icon>mic</mat-icon>
-    </button>
-    
+<div class="footer-container" layout-align='center center' layout='column'>  
+
+    <mat-toolbar>
+            <mat-icon (click)="feed()" class="footer-item"><i class="material-icons">library_books</i></mat-icon>
+            <mat-icon (click)="stats()" class="footer-item"><i class="material-icons">pie_chart</i></mat-icon>
+            <mat-icon (click)="actions()" class="footer-item"><i class="material-icons">list</i></mat-icon>
+            <mat-icon (click)="user()" class="footer-item"><i class="material-icons">account_circle</i></mat-icon>
+        
+  </mat-toolbar>
+
 </div>
