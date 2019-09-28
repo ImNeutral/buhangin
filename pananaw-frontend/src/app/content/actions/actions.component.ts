@@ -12,13 +12,11 @@ export class ActionsComponent implements OnInit {
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   cardList: CardModel[] = [
       {
-        uid: '1',
+        id: '1',
         content: 'Sample Content of CardJAKKJAKJDJDLGW;fdd fsfsfksfwfwkjhjwkh fdsffkjhsafsah fsafk hsafiasfsafjshfhsafusfk safkhsfafsaff',
         sentiment: Sentiment.GOOD,
         source: 'Twitter',
         link: 'some link',
-        numShares: 4,
-        numReacts: 57,
         status: Status.NEW,
         yearPosted: 2019,
         monthPosted: 1,
@@ -27,13 +25,11 @@ export class ActionsComponent implements OnInit {
         minutesPosted: 12
       },
       {
-        uid: '2',
+        id: '2',
         content: 'Sample Content of Card 2',
         sentiment: Sentiment.GOOD,
         source: 'Twitter',
         link: 'some link',
-        numShares: 4,
-        numReacts: 57,
         status: Status.NEW,
         yearPosted: 2019,
         monthPosted: 1,
@@ -42,13 +38,11 @@ export class ActionsComponent implements OnInit {
         minutesPosted: 12
       },
       {
-        uid: '3',
+        id: '3',
         content: 'Sample Content of Card 3',
         sentiment: Sentiment.GOOD,
         source: 'Twitter',
         link: 'some link',
-        numShares: 4,
-        numReacts: 57,
         status: Status.NEW,
         yearPosted: 2019,
         monthPosted: 1,
@@ -57,13 +51,11 @@ export class ActionsComponent implements OnInit {
         minutesPosted: 12
       },
       {
-        uid: '4',
+        id: '4',
         content: 'Sample Content of Card 4',
         sentiment: Sentiment.GOOD,
         source: 'Twitter',
         link: 'some link',
-        numShares: 4,
-        numReacts: 57,
         status: Status.NEW,
         yearPosted: 2019,
         monthPosted: 1,
@@ -72,13 +64,11 @@ export class ActionsComponent implements OnInit {
         minutesPosted: 12
       },
       {
-        uid: '5',
+        id: '5',
         content: 'Sample Content of Card 5',
         sentiment: Sentiment.GOOD,
         source: 'Twitter',
         link: 'some link',
-        numShares: 4,
-        numReacts: 57,
         status: Status.NEW,
         yearPosted: 2019,
         monthPosted: 1,
