@@ -45,7 +45,8 @@ def predict(text):
 
     # sanitize input
     text = text.lower()
-    re.sub(r'[^\w]', '', text)
+    text = re.sub(r'[^\w\s]', '', text)
+    print(text)
 
     text_ids = tokenizer.texts_to_sequences([text])
     padded_text_ids = sequence.pad_sequences(text_ids, maxlen=max_len)
