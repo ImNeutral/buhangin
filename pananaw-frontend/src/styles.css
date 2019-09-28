@@ -45,16 +45,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: auto;
 }
 
-.user #details table {
+#details table {
   margin-left: auto;
   margin-right: auto;
 }
 
-.user #details table td.label {
+#details table td.label {
   text-align: right;
   font-weight: bold;
 }
-.user #details table td.detail {
+#details table td.detail {
   text-align: left;
   padding-left: 15px;
 }
@@ -88,10 +88,48 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-top: 80px;
 }
 
+.statistics {
+  padding-top: 50px;
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.statistics .chart-title {
+  text-align: center;
+}
+
+.statistics-upper-nav button {
+  width: 50%;
+}
+
+.ranking {
+  padding-top: 20px;
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .green {
   background-color: #42a363;
 }
 
 .red {
   background-color: #f26a65;
+}
+
+.font-green {
+  color: #42a363;
+}
+
+.font-red {
+  color: #f26a65;
+}
+
+.font-white {
+  color: white;
+}
+
+.font-black {
+  color: black;
 }

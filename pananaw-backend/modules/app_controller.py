@@ -1,8 +1,59 @@
 from flask import Flask, request, jsonify
 from modules import firebase_service
 from modules import email_service
+from modules import data_fetcher
+from modules import predictor
+from modules.classes import Metric
+from modules.classes import Rank
 
 app = Flask(__name__)
+
+## PREDICTOR ##
+
+@app.route("/find-sentiments/<userId>", methods=["POST"])
+def findSentimentsByUserId(userId):
+    user = firebase_service.findEntity(userId, "users")
+    cards = data_fetcher.fetch(user["handler"], __getLatestPostId())
+
+    metric_id = firebase_service.__generateId()
+    metric_dict = firebase_service.findEntity(metric_id, "metrics")
+    metric = Metric()
+    
+    if metric_dict is None:
+        firebase_service.createEntity(metric.to_dict(), "metrics")
+    else:
+        metric.to_obj(metric_dict)
+
+    if len(cards) > 0:
+        latest_id = cards[0].id
+        __createFile(latest_id)
+
+        for card in cards:
+            card.sentiment = predictor.predict(card.content)
+            metric.incrementStatusCount(card.sentiment)
+            
+            if card.sentiment != "normal":
+                firebase_service.createEntity(card.to_dict() , "cards")
+            print(f"CONTENT : {card.content}")
+            print(f"SENTIMENT : {card.sentiment}")
+            
+            rank_id = f"{firebase_service.__generateId()}-{__cleanRemoveSpaces(card.location)}" 
+            rank_dict = firebase_service.findEntity(rank_id, "ranks")
+            rank = Rank(card.location)
+
+            if rank_dict is None:
+                firebase_service.createEntity(rank.to_dict(), "ranks")
+            else:
+                rank.to_obj(rank_dict)
+                rank.incrementGoodCount(card.location)
+                firebase_service.updateEntity(rank.to_dict(), rank.id, "ranks")
+    
+        firebase_service.updateEntity(metric.to_dict(), metric.id, "metrics")
+
+    return jsonify({"success" : True}), 200
+        
+
+## PREDICTOR ##
 
 ## CARD ##
 
@@ -66,3 +117,20 @@ def send_email():
     return jsonify({ "sent": is_sent }), 200
 
 ## EMAIL ##
+
+def __createFile(latest_id):
+    f = open("lib/latest-post-id.txt", 'w')
+    f.write(latest_id)
+    f.close()
+
+def __getLatestPostId():
+    f = open("lib/latest-post-id.txt", "r")
+    content = f.read()
+    f.close()
+    return content
+
+def __cleanRemoveSpaces(word):
+    if word is None:
+        return "Others"
+    else:
+        return word.replace(" ", "-")

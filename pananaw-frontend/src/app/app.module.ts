@@ -35,6 +35,10 @@ import { TruncatePipe } from 'src/@shared/pipe/truncate.pipe';
 import { ActionModalComponent } from './content/actions/action-modal/action-modal.component';
 import { HammertimeDirective } from './hammertime.directive';
 import { UserComponent } from './content/user/user.component';
+import { StatisticsComponent } from './content/statistics/statistics.component';
+import { RankingComponent } from './content/ranking/ranking.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +52,9 @@ import { UserComponent } from './content/user/user.component';
     ActionsComponent,
     TruncatePipe,
     ActionModalComponent,
-    HammertimeDirective
+    HammertimeDirective,
+    StatisticsComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +76,9 @@ import { UserComponent } from './content/user/user.component';
     MatCheckboxModule,
     MatDialogModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ChartsModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
