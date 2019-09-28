@@ -73,6 +73,6 @@ def send_email():
 
     is_sent = email_service.send_email(sender, receiver, title, content)
 
-    return jsonify({ "sent": is_sent })
+    return jsonify({ "sent": is_sent }), 200
 
 ## EMAIL ##
