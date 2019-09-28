@@ -1,5 +1,5 @@
-# Python Environment
-/buhangin-api/venv
-
 # Pycache
 */__pycache__
+
+# Gmail stuff
+*/*.pickle
