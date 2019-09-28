@@ -6,11 +6,17 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule, MatSelectModule, MatInputModule, MatTabsModule } from '@angular/material';
+import { FooterComponent } from './footer/footer.component';
+import { FeedComponent } from './content/feed/feed.component';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    FooterComponent,
+    FeedComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
