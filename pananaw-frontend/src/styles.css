@@ -5,22 +5,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.example-small-box, .example-large-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 16px;
-    padding: 16px;
-    border-radius: 8px;
-  }
-  
-  .example-small-box {
-    height: 100px;
-    width: 100px;
-  }
-  
-  .example-large-box {
-    height: 300px;
-    width: 300px;
-  }
-  
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  background-color: ;
+  text-align: center;
+}
