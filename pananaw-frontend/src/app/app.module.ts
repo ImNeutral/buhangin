@@ -25,6 +25,7 @@ import { ContentComponent } from './content/content.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserComponent } from './user/user.component';
+import { HammertimeDirective } from './hammertime.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UserComponent } from './user/user.component';
     FeedComponent,
     ContentComponent,
     WelcomeComponent,
-    UserComponent
+    UserComponent,
+    HammertimeDirective
   ],
   imports: [
     BrowserModule,

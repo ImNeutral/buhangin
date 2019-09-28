@@ -1,1 +1,39 @@
-<p>feed works!</p>
+<div class="feeds">
+    <p class="feed-empty">
+        Feeds empty.
+    </p>
+
+    <div *ngFor="let card of cards; let i = index">
+            <mat-card *ngIf="ifTop(card.uid)"
+                [ngClass]="setCustomClass(card.sentiment, card.uid)"
+                class="feed" 
+                [style.margin-top.%]="(i + 1) * 2"
+                [@cardAnimator]="animationState" 
+                (@cardAnimator.done)="resetAnimationState()"
+                (swipeleft)="startAnimation('slideOutLeft', card.uid)"
+                (swiperight)="startAnimation('zoomOutRight', card.uid)">
+            
+                <mat-card-content>
+                <p>
+                    {{ card.content }}
+                </p>
+                </mat-card-content>
+            </mat-card>
+        
+            <mat-card *ngIf="!ifTop(card.uid)"
+                [ngClass]="setCustomClass(card.sentiment, card.uid)"
+                class="feed" 
+                [style.margin-top.%]="(i + 1) * 2"
+                (@cardAnimator.done)="resetAnimationState()"
+                (swipeleft)="startAnimation('slideOutLeft', card.uid)"
+                (swiperight)="startAnimation('zoomOutRight', card.uid)">
+        
+                <mat-card-content>
+                <p>
+                    {{ card.content }}
+                </p>
+                </mat-card-content>
+            </mat-card>
+        
+        </div>
+</div>
