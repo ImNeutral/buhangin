@@ -32,8 +32,9 @@ export class ActionEmailModalComponent implements OnInit {
       'sender': this.data.senderDetails.email,
       'receiver': receiver,
       'title': 'Re: Twitter Feedback',
-      'content': this.data.emailTemplate
+      'content': this.emailTemplate
     }
+    console.log(emailDetails);
     this.dialogRef.close();
   }
 
