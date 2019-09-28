@@ -7,7 +7,7 @@ import re
 
 # Files
 vocabulary_file = "lib/vocab.txt"
-model_file = "lib/trained.model"
+model_file = "lib/trained2.model"
 graph = None
 
 # Constants
