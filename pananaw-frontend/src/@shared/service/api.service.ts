@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   
 export class ApiService {
 
-  host = "http://localhost:5000/";
+  host = "http://127.0.0.1:5000/";
 
   constructor(private httpClient: HttpClient) {
       
@@ -15,22 +15,22 @@ export class ApiService {
 
   get(url) {
     url = this.host + url;
-    return this.httpClient.get(url).subscribe();
+    return this.httpClient.get(url);
   }
 
   put(url, data) {
     url = this.host + url;
-    return this.httpClient.put(url, data).subscribe();
+    return this.httpClient.put(url, data);
   }
 
   post(url, data) {
     url = this.host + url;
-    return this.httpClient.post(url, data).subscribe();
+    return this.httpClient.post<any>(url, data);
   }
 
   delete(url) {      
     url = this.host + url;
-    return this.httpClient.delete(url).subscribe();
+    return this.httpClient.delete(url);
   }
 
   // functions here

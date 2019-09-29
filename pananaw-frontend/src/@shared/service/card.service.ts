@@ -30,5 +30,11 @@ export class CardService {
       .orderBy('numMentions', 'asc') ).valueChanges();
   }
 
+  getAllPendingCards() {
+    return this.db.collection<CardModel>('cards', ref => ref
+      .where('status', '==', 'pending')
+      .orderBy('numMentions', 'asc') ).valueChanges();
+  }
+
 }
 
