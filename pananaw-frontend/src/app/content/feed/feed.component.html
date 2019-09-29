@@ -1,0 +1,38 @@
+<div class="feeds">
+    <p class="feed-empty">
+        Feeds empty.
+    </p>
+
+    <div *ngFor="let card of getTenCards(); let i = index">
+        <mat-card *ngIf="ifTop(card)"
+            [ngClass]="setCustomClass(card.sentiment)"
+            class="feed" 
+            [style.margin-top.%]="(i + 1) * 2"
+            [@cardAnimator]="animationState" 
+            (@cardAnimator.done)="resetAnimationState()"
+            (swipeleft)="startAnimation('slideOutLeft', card)"
+            (swiperight)="startAnimation('zoomOutRight', card)">
+        
+            <mat-card-content>
+            <p>
+                {{ card.content }}
+            </p>
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card *ngIf="!ifTop(card)"
+            [ngClass]="setCustomClass(card.sentiment)"
+            class="feed" 
+            [style.margin-top.%]="(i + 1) * 2"
+            (@cardAnimator.done)="resetAnimationState()"
+            (swipeleft)="startAnimation('slideOutLeft', card)"
+            (swiperight)="startAnimation('zoomOutRight', card)">
+    
+            <mat-card-content>
+            <p>
+                {{ card.content }}
+            </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

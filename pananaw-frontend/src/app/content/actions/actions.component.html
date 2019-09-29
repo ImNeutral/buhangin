@@ -1,0 +1,15 @@
+<div class="action-div">
+    <h3>Items to be Acted Upon {{sample}}</h3>
+
+    <mat-list>
+        <mat-list-item *ngFor="let card of cardList" (disabledRipple)=false>
+            <mat-label (click)="showCardDetails(card)">{{card.content | truncate}}</mat-label>
+            <mat-checkbox (click)="setCardChecked(card)" checkboxPosition="before"></mat-checkbox>
+            
+        </mat-list-item>
+    </mat-list>
+
+<button mat-fab color=secondary id="action-button" (click)="getCheckedItems(cardList)"><mat-icon><i class="fas fa-bolt"></i> </mat-icon></button>
+
+        
+</div>

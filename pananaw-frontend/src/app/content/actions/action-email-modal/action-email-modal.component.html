@@ -1,0 +1,25 @@
+<div mat-dialog-header>
+    <mat-form-field>
+        <mat-label>Email to:</mat-label>
+        <mat-select [(value)]="selectedContact" required="true">
+            <mat-option *ngFor="let contact of data.senderDetails.contact" [value]="contact">
+            {{contact}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div mat-dialog-content> 
+    <mat-form-field>
+    <textarea matInput
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="8"
+                value="{{emailTemplate}}">
+    </textarea>
+    </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+    <button class="maroon" mat-raised-button (click)="cancel()">Never mind</button>
+    <button class="darkcyan" mat-raised-button type="submit" (click)="sendEmail(selectedContact)">Send Email</button>
+</div>
