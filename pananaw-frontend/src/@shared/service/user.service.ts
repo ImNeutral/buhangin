@@ -1,25 +1,22 @@
-import { Observable, BehaviorSubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { CardModel } from '../model/card.model';
+import { Observable } from 'rxjs';
 import { UserModel } from '../model/user.model';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CardService {
-
-  cards: Observable<any[]>;
+export class UserService {
+  users: Observable<any[]>;
   userCollection: AngularFirestoreCollection<UserModel>;
-  cardDoc: AngularFirestoreDocument<UserModel>;
+  userDoc: AngularFirestoreDocument<UserModel>;
 
   constructor(private db: AngularFirestore) {
     this.userCollection = this.db.collection<UserModel>('users');
   }
 
-  getAllCards() {
+  getAllUsers() {
     return this.userCollection.valueChanges();
   }
 
 }
-

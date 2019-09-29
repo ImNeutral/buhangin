@@ -58,6 +58,7 @@ class Metric:
         self.normal = 0
         self.bad = 0
         self.mentions = 0
+        self.actedItems = 0
 
     def to_dict(self):
         return {
@@ -68,6 +69,7 @@ class Metric:
             "normal" : self.normal,
             "bad" : self.bad,
             "mentions" : self.mentions,
+            "actedItems": self.actedItems
         }
 
     def to_obj(self, metric_dict):
@@ -78,6 +80,7 @@ class Metric:
         self.normal = metric_dict["normal"]
         self.bad = metric_dict["bad"]
         self.mentions = metric_dict["mentions"]
+        self.actedItems = metric_dict["actedItems"]
 
     def incrementStatusCount(self, status): 
         if status == "normal":
