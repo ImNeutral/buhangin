@@ -13,8 +13,8 @@ import { ApiService } from 'src/@shared/service/api.service';
   styleUrls: ['./feed.component.css'],
   animations: [
     trigger('cardAnimator', [
-      transition('* => zoomOutRight', animate(1000, keyframes(kf.zoomOutRight))),
-      transition('* => slideOutLeft', animate(1000, keyframes(kf.slideOutLeft)))
+      transition('* => zoomOutRight', animate(500, keyframes(kf.zoomOutRight))),
+      transition('* => slideOutLeft', animate(500, keyframes(kf.slideOutLeft)))
     ])
   ]
 })
@@ -57,8 +57,20 @@ export class FeedComponent implements OnInit {
           }
           this.apiService.put( (this.cardUrl + "/" + card.id ), card);
         },
-        1000);
+        500);
     }
+  }
+
+  getTenCards() {
+    var resultList = [];
+    var cardSize = this.cards.length;
+    var fromNegativeIndex = 10;
+    if(cardSize <= 10)    {
+      resultList = this.cards;
+    } else {
+      resultList = this.cards.slice(cardSize - fromNegativeIndex, cardSize);
+    }
+    return resultList;
   }
 
   resetAnimationState() {
@@ -85,7 +97,7 @@ export class FeedComponent implements OnInit {
 
   openSnackBar(message: string, action: string, panelClass: string) {
     this._snackBar.open(message, action, {
-      duration: 1500,
+      duration: 500,
       verticalPosition: "top",
       panelClass: panelClass
     });

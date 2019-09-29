@@ -3,7 +3,7 @@
         Feeds empty.
     </p>
 
-    <div *ngFor="let card of cards; let i = index">
+    <div *ngFor="let card of getTenCards(); let i = index">
         <mat-card *ngIf="ifTop(card)"
             [ngClass]="setCustomClass(card.sentiment)"
             class="feed" 
