@@ -35,6 +35,7 @@ import { TruncatePipe } from 'src/@shared/pipe/truncate.pipe';
 import { ActionModalComponent } from './content/actions/action-modal/action-modal.component';
 import { HammertimeDirective } from './hammertime.directive';
 import { UserComponent } from './content/user/user.component';
+import { ActionEmailModalComponent } from './content/actions/action-email-modal/action-email-modal.component';
 import { StatisticsComponent } from './content/statistics/statistics.component';
 import { RankingComponent } from './content/ranking/ranking.component';
 import { ChartsModule } from 'ng2-charts';
@@ -53,6 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
     TruncatePipe,
     ActionModalComponent,
     HammertimeDirective,
+    ActionEmailModalComponent,
     StatisticsComponent,
     RankingComponent
   ],
@@ -84,7 +86,8 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ActionModalComponent
+    ActionModalComponent,
+    ActionEmailModalComponent
   ]
 })
 export class AppModule { }

@@ -15,22 +15,22 @@ export class ApiService {
 
   get(url) {
     url = this.host + url;
-    return this.httpClient.get(url).subscribe();
+    return this.httpClient.get(url);
   }
 
   put(url, data) {
     url = this.host + url;
-    return this.httpClient.put(url, data).subscribe();
+    return this.httpClient.put(url, data);
   }
 
   post(url, data) {
     url = this.host + url;
-    return this.httpClient.post(url, data).subscribe();
+    return this.httpClient.post<any>(url, data);
   }
 
   delete(url) {      
     url = this.host + url;
-    return this.httpClient.delete(url).subscribe();
+    return this.httpClient.delete(url);
   }
 
   // functions here

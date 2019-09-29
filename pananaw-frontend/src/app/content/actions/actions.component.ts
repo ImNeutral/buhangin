@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CardModel, Status, Sentiment } from './../../../@shared/model/card.model'
-import { MatListOption, MatDialog } from '@angular/material';
+import { MatListOption, MatDialog, MatSnackBar } from '@angular/material';
 import { ActionModalComponent } from './action-modal/action-modal.component';
+import { element } from 'protractor';
+import { UserModel } from 'src/@shared/model/user.model';
+import { ActionEmailModalComponent } from './action-email-modal/action-email-modal.component';
+import { CardService } from 'src/@shared/service/card.service';
+import { ApiService } from 'src/@shared/service/api.service';
 
 @Component({
   selector: 'app-actions',
@@ -9,77 +14,22 @@ import { ActionModalComponent } from './action-modal/action-modal.component';
   styleUrls: ['./actions.component.css']
 })
 export class ActionsComponent implements OnInit {
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
-  cardList: CardModel[] = [
-      {
-        id: '1',
-        content: 'Sample Content of CardJAKKJAKJDJDLGW;fdd fsfsfksfwfwkjhjwkh fdsffkjhsafsah fsafk hsafiasfsafjshfhsafusfk safkhsfafsaff',
-        sentiment: Sentiment.GOOD,
-        source: 'Twitter',
-        link: 'some link',
-        status: Status.NEW,
-        yearPosted: 2019,
-        monthPosted: 1,
-        dayPosted: 11,
-        hourPosted: 4,	
-        minutesPosted: 12
-      },
-      {
-        id: '2',
-        content: 'Sample Content of Card 2',
-        sentiment: Sentiment.GOOD,
-        source: 'Twitter',
-        link: 'some link',
-        status: Status.NEW,
-        yearPosted: 2019,
-        monthPosted: 1,
-        dayPosted: 11,
-        hourPosted: 4,	
-        minutesPosted: 12
-      },
-      {
-        id: '3',
-        content: 'Sample Content of Card 3',
-        sentiment: Sentiment.GOOD,
-        source: 'Twitter',
-        link: 'some link',
-        status: Status.NEW,
-        yearPosted: 2019,
-        monthPosted: 1,
-        dayPosted: 11,
-        hourPosted: 4,	
-        minutesPosted: 12
-      },
-      {
-        id: '4',
-        content: 'Sample Content of Card 4',
-        sentiment: Sentiment.GOOD,
-        source: 'Twitter',
-        link: 'some link',
-        status: Status.NEW,
-        yearPosted: 2019,
-        monthPosted: 1,
-        dayPosted: 11,
-        hourPosted: 4,	
-        minutesPosted: 12
-      },
-      {
-        id: '5',
-        content: 'Sample Content of Card 5',
-        sentiment: Sentiment.GOOD,
-        source: 'Twitter',
-        link: 'some link',
-        status: Status.NEW,
-        yearPosted: 2019,
-        monthPosted: 1,
-        dayPosted: 11,
-        hourPosted: 4,	
-        minutesPosted: 12
-      }
-  ]
+  cardList : CardModel[] = [];
+  currentUser: UserModel = {
+    uid: '3',
+    name: 'John Gokongwei',
+    email: 'john@gmail.com',
+    handler: '@Robinsons',
+    contact: ['bea@mailinator.com', 'maria@mailinator.com']
+  }
 
 
-  constructor(public dialog: MatDialog) { 
+  constructor(public dialog: MatDialog,
+              private cardService: CardService,
+              private _snackBar: MatSnackBar,) { 
+    this.cardService.getAllPendingCards().subscribe(cards => {
+      this.cardList = cards;
+    });
   }
 
   ngOnInit() {
@@ -87,16 +37,13 @@ export class ActionsComponent implements OnInit {
   }
 
   onGroupsChange(options: MatListOption[]) {
-    // map these MatListOptions to their values
-    // console.log(options.map(o => o.value));
     if(options.length ==1) {
-      // TODO modal that displays info
       this.showCardDetails(options.pop().value);
     }
   }
 
   setCardChecked(card){
-    card.checked = ! card.checked;
+    card.checked = !card.checked;
   }
 
   showCardDetails(cardDetails: any){
@@ -104,14 +51,50 @@ export class ActionsComponent implements OnInit {
     this.openDialog(cardDetails);
   }
 
-  getCheckedItems(cardList: any){
+  getCheckedItems(cardList){
     console.log(cardList);
+    let checkedCards = [];
+    cardList.forEach(function(element){
+      if(element.checked){
+        checkedCards.push(element);
+      }
+    });
+    this.sendEmail(checkedCards);
   }
+
+  sendEmail(checkedCards){
+    const dialogRef = this.dialog.open(ActionEmailModalComponent, {
+      width: '250px',
+      data: {senderDetails: this.currentUser, 
+        checkedCards: checkedCards
+      }
+    }).updateSize("500px");
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result)
+        this.openSnackBar("Email Sent.", "");
+    });
+
+    this.cardList.forEach(function(element){
+      if(checkedCards.includes(element)){
+        this.cardList.pop(); 
+      }
+    });
+  }
+
 
   openDialog(card): void {
     const dialogRef = this.dialog.open(ActionModalComponent, {
       width: '250px',
       data: {content: card.content}
+    });
+  }
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 1500,
+      verticalPosition: "top"
     });
   }
 
