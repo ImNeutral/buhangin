@@ -1,9 +1,11 @@
+import { NumberSymbol } from '@angular/common';
 
 export interface MetricsModel {
-    uid: string;
+    id: string;
     year: number;
     month: number;
-    pie: Object;
     mentions: number;
-    actedItems: number;
+    bad: number;
+    good: number;
+    normal: number;
 }
