@@ -40,18 +40,14 @@ export class ActionEmailModalComponent implements OnInit {
       'title': 'Re: Twitter Feedback',
       'content': this.emailTemplate
     }
-    console.log(emailDetails);
     var response;
     const component = this;
     this.apiService.post(this.emailUrl, emailDetails).subscribe(res => {
       response = res.sent;
-      console.log(response);
       if(response){
         component.data.checkedCards.forEach(element => {
           element.status = Status.DONE; 
-          console.log(element);
-          const endPoint = component.apiService.host + component.cardUrl + '/';
-          component.apiService.put( (endPoint + element.id ), element).subscribe();
+          component.apiService.put( (component.cardUrl + '/' + element.id ), element).subscribe();
         });
       }
       component.dialogRef.close(response);

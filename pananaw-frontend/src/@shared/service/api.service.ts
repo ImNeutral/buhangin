@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   
 export class ApiService {
 
-  host = "http://127.0.0.1:5000/";
+  host = "http://localhost:5000/";
 
   constructor(private httpClient: HttpClient) {
       
