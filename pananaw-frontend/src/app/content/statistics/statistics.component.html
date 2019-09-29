@@ -4,7 +4,7 @@
     <button mat-raised-button (click)="navigateToRankings()">Rankings</button>
 </div>
 <div class="statistics">
-    <div>
+    <div  *ngIf="show">
         <h3 class="chart-title">{{ chartTitle }}</h3>
         <div style="display: block">
             <canvas baseChart

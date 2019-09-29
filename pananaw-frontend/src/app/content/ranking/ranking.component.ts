@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RankService } from 'src/@shared/service/rank.service';
 
 @Component({
   selector: 'app-ranking',
@@ -8,11 +9,20 @@ import { Router } from '@angular/router';
 })
 export class RankingComponent implements OnInit {
 
-  rankings = ["Ortigas", "Pasay", "Makati"];
+  rankings = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private rankService: RankService) { }
 
   ngOnInit() {
+    this.rankService.findRanks().subscribe(ranks => {
+      const sorted = ranks.sort((a, b) => b.good - a.good);
+
+      this.rankings = sorted.map(rank => {
+        return { location: rank.location ? rank.location : 'Others' };
+      });
+
+    });
   }
 
   navigateToStatistics() {

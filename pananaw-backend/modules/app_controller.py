@@ -66,7 +66,20 @@ def createCard():
 
 @app.route("/card/<id>", methods=["PUT"])
 def updateCardById(id):
-    return jsonify(firebase_service.updateEntity(request.json, id, "cards")), 200
+    card = request.json
+    if card["status"] == 'done':
+        metric_id = firebase_service.__generateId()
+        metric_dict = firebase_service.findEntity(metric_id, "metrics")
+        metric = Metric()
+
+        if metric_dict is None:
+            firebase_service.createEntity(metric.to_dict(), "metrics")
+        else:
+            metric.to_obj(metric_dict)
+            metric.actedItems = metric.actedItems + 1
+            firebase_service.updateEntity(metric.to_dict(), metric_dict["id"], "metrics")
+
+    return jsonify(firebase_service.updateEntity(card, id, "cards")), 200
 
 @app.route("/card/<id>", methods=["DELETE"])
 def deleteCardById(id):
