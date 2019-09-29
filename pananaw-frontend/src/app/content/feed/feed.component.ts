@@ -55,7 +55,8 @@ export class FeedComponent implements OnInit {
             card.status = Status.PENDING;
             this.openSnackBar("Marked as needs action.", "", "red");
           }
-          this.apiService.put( (this.cardUrl + "/" + card.id ), card);
+          console.log(this.cardUrl + "/" + card.id);
+          this.apiService.put( (this.cardUrl + "/" + card.id ), card).subscribe();
         },
         500);
     }
