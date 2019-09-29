@@ -21,6 +21,8 @@
 - Flask 1.1.1
 - Firebase
 - Angular 8
+- Python 3.6.8
+- Typescript
 
 # Google auth
 - google_auth_oauthlib 0.4.0
